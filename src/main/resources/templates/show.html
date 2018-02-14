@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>People</title>
+</head>
+<body>
+<h1>People:</h1>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th colspan="2">Action</th>
+    </tr>
+    <tr th:each="person : ${people}">
+        <td th:text="${person.id}"/>
+        <td th:text="${person.name}"/>
+        <td th:text="${person.surname}"/>
+        <td>
+            <a th:href="@{'/people/delete/' + ${person.id}}">delete</a>
+        </td>
+        <td>
+            <a th:href="@{'/people/edit/' + ${person.id}}">edit</a>
+        </td>
+    </tr>
+</table>
+<p>
+    <a th:href="@{'/people/add/'}">add new</a>
+</p>
+</body>
+</html>

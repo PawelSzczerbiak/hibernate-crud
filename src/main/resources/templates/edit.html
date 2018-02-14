@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+    <h2>Edit person:</h2>
+    <form action="/people" method="post" th:object="${person}">
+        <input th:field="*{id}" type="hidden"/>
+        <input th:field="*{name}"/>
+        <input th:field="*{surname}"/>
+        <input type="submit"/>
+    </form>
+</body>
+</html>
