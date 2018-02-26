@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Found</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Surname</th>
+        </tr>
+        <tr th:each="person : ${people}">
+            <td th:text="${person.id}"/>
+            <td th:text="${person.name}"/>
+            <td th:text="${person.surname}"/>
+        </tr>
+    </table>
+    <p>
+        <a th:href="@{'/people/'}">Go to list</a>
+    </p>
+</body>
+</html>

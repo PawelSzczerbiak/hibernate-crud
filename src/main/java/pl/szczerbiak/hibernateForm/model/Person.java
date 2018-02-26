@@ -6,6 +6,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Person {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -36,5 +37,14 @@ public class Person {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                '}';
     }
 }

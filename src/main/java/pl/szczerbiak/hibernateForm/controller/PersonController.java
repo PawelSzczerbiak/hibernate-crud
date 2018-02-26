@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.*;
 import pl.szczerbiak.hibernateForm.model.Person;
 import pl.szczerbiak.hibernateForm.repository.PersonRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 // CRUD operations
 
 @Controller
@@ -47,4 +51,32 @@ public class PersonController {
         modelMap.addAttribute("person", personRepository.findById(id).get());
         return "edit";
     }
+
+    // Searching
+
+    @GetMapping("/people/find")
+    public String findPeople() {
+        return "find";
+    }
+
+    @PostMapping("/people/found")
+    public String showFoundPeople(@RequestParam String type, @RequestParam String value
+            , ModelMap modelMap) {
+
+        List<Person> people = new ArrayList<>();
+        // Better way?
+        List<Person> allPeople = (List<Person>) personRepository.findAll();
+        if(type.equals("name")){
+            people = allPeople.stream()
+                    .filter( p -> p.getName().contains(value))
+                    .collect(Collectors.toList());
+        }else{
+            people = allPeople.stream()
+                    .filter( p -> p.getSurname().contains(value))
+                    .collect(Collectors.toList());
+        }
+        modelMap.addAttribute("people", people);
+        return "found";
+    }
+
 }
